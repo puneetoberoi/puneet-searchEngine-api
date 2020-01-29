@@ -23,9 +23,6 @@ public class SecondDBUpdate {
                     HttpURLConnection huc = (HttpURLConnection) url.openConnection();
                     int respondcode = huc.getResponseCode();
 
-                    //System.out.println(respondcode);
-
-
                     if (respondcode == 200 || respondcode == 302 || respondcode == 301) {
                         stmt = con.createStatement();
                         String query = "insert into accepted (url) values (?)";
