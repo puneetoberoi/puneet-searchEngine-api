@@ -2,7 +2,6 @@ package com.company;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 public class Utils {
@@ -28,17 +27,7 @@ public class Utils {
             out=out+" "+m.getKey();
         }
 
-
-//        HashSet<String> str = new HashSet<>();
-//        for(String s : words){
-//            if(!str.contains(s)){
-//                str.add(s);
-//            }
-//        }
-
-        //System.out.println(str.toString().length());
         return out.trim();
-        //return toReduce.trim();
 
     }
 }
