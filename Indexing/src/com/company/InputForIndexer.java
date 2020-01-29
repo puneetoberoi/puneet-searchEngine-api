@@ -46,24 +46,13 @@ public class InputForIndexer {
                     Elements hTags = document.select("h1, h2, h3, h4, h5, h6");
                     Elements h1Tags = hTags.select("h1");
                     System.out.println(h1Tags.text() + " wmk");
-                    //System.out.println(para.text());
-                    //System.out.println(title.text());
-                    //System.out.println(titl.text());
-                    //System.out.println(link.tagName("title").text());
                     String st = (para.text()+ " " + titl.text()+" "+link.tagName("title").text());
-                    //System.out.println(st.length());
-                    //System.out.println();
-
                     String n = Utils.StringUtils(st);
                     String[] arr = n.split(" ");
                     for(String nanak : arr){
                         System.out.println(ur1 + " = " + nanak);
                         new Index(nanak, ur1, description);
                     }
-                    //System.out.println(n.length());
-                    //System.out.println();
-                    //map.put(n, ur1);
-                    //inputToIndexer(map);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -111,8 +100,6 @@ public class InputForIndexer {
             System.out.println(Arrays.stream(nanak.getKey().toString().split(" ")).distinct().collect(Collectors.joining(" ")));
             System.out.println(Arrays.stream(nanak.getValue().toString().split(" ")).distinct().collect(Collectors.joining(" ")));
             System.out.println();
-            //  new Index(Arrays.stream(nanak.getKey().toString().split(" ")).distinct().collect(Collectors.joining(" ")), Arrays.stream(nanak.getValue().toString().split(" ")).distinct().collect(Collectors.joining(" ")));
-
 
         }
         Map<String, String> map3 = new HashMap<>(map2);
