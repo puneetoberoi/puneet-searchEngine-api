@@ -13,12 +13,6 @@ public class Index {
             //MongoDatabase dbs = as.getDatabase
             DB db = as.getDB("QueryProcessor");
             DBCollection collection = db.getCollection("new");
-            //manipulate the key value to put in mongodb
-            //String body = key.replaceAll(".", " ").trim();
-            //body = body.replaceAll(",", " " ).trim();
-
-            //String url = value.replaceAll(".", " ").trim();
-            //url = url.replaceAll(",", " " ).trim();
             //preparing the doc to insert
             BasicDBObject doc1 = new BasicDBObject("body", key).append("url", value).append("description", a);
             //object to check if the key already exist, where we will just append.
