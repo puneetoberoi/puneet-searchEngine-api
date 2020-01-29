@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Weather</title>
+    <style>
+        #b {
+            transform: translate(44%, 2000%);
+        }
+    </style>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <script type="text/javascript">
+        function fn1() {
+            var str = document.getElementById("url").value;
+            alert("value you entered is- " + str);
+        }
+    </script>
+</head>
+
+<body id="b">
+    <div class="main-content">
+
+
+
+        <form action="/" method="POST">
+
+            <label for="URL">URL</label>
+            {{!-- <input placeholder="Enter the URL and unique name "> --}}
+            <input type="text" id="url" name="URL" />
+            <button onclick="fn1()" id="button">Submit</button>
+            <br />
+
+        </form>
+    </div>
+</body>
+
+</html>
