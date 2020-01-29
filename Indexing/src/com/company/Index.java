@@ -6,15 +6,16 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class Index {
-    public Index(String key, String value, String a) throws IOException {
+    public Index(String key, String value) throws IOException {
         try {
-            MongoClientURI server = new MongoClientURI("mongodb://localhost:27017");
+//            MongoClientURI server = new MongoClientURI("mongodb://localhost:27017");
+            MongoClientURI server = new MongoClientURI("mongodb+srv://puneet:2020linux@nanak-56iwq.mongodb.net/test?retryWrites=true&w=majority");
             MongoClient as = new MongoClient(server);
             //MongoDatabase dbs = as.getDatabase
             DB db = as.getDB("QueryProcessor");
             DBCollection collection = db.getCollection("new");
             //preparing the doc to insert
-            BasicDBObject doc1 = new BasicDBObject("body", key).append("url", value).append("description", a);
+            BasicDBObject doc1 = new BasicDBObject("body", key).append("url", value);
             //object to check if the key already exist, where we will just append.
             DBObject query = new BasicDBObject("body", key);
             //if no key yet insert else append

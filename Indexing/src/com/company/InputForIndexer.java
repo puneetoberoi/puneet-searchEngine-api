@@ -37,12 +37,14 @@ public class InputForIndexer {
                     Elements titl = document.getElementsByTag("a");
                     Elements title = document.getElementsByTag("body");
                     Elements para = document.select("title");
-                    String description =
-                            document.select("meta[name=description]").get(0)
-                                    .attr("content");
-                    String keywords =
-                            document.select("meta[name=keywords]").first()
-                                    .attr("content");
+//                    String description=
+//                                document.select("meta[name=description]").get(0)
+//                                        .attr("content");
+
+
+//                    String keywords =
+//                            document.select("meta[name=keywords]").first()
+//                                    .attr("content");
                     Elements hTags = document.select("h1, h2, h3, h4, h5, h6");
                     Elements h1Tags = hTags.select("h1");
                     System.out.println(h1Tags.text() + " wmk");
@@ -51,7 +53,14 @@ public class InputForIndexer {
                     String[] arr = n.split(" ");
                     for(String nanak : arr){
                         System.out.println(ur1 + " = " + nanak);
-                        new Index(nanak, ur1, description);
+                        try{
+                            new Index(nanak, ur1);
+                        }catch(Exception e){
+                            if( e instanceof IndexOutOfBoundsException){
+                                System.out.println("wmk2");
+                            }
+                        }
+
                     }
 
                 } catch (Exception e) {
