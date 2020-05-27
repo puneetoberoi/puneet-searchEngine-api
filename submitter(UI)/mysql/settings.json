@@ -1,7 +1,7 @@
 {
     "url" :"localhost",
     "user" : "root",
-    "pass" : "puneet",
+    "pass" : "",
     "db" : "submitter",
     "multipleStatements?": false
 }
