@@ -9,8 +9,8 @@ var settings = require("./mysql/settings.json");
 const viewsPath = path.join(__dirname, './template/views')
 const partialsPath = path.join(__dirname, './template/partials')
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static('views'));  // set a static folder so we donthave to put in a command for every page(about, contact etc)
-app.use(bodyParser.json()); //.use is to introduce middlewware
+app.use(express.static('views')); 
+app.use(bodyParser.json()); // introducing middlewware
 app.use(cookieParser());
 
 app.set('view engine', 'hbs')
