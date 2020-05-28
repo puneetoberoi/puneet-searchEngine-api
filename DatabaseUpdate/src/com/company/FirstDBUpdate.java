@@ -26,87 +26,65 @@ public class FirstDBUpdate {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        Set<String> uniqueURL = new HashSet<>();
+        //Set<String> uniqueURL = new HashSet<>();
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/submitter?useSSL=false", "root", "");
-            //con.setAutoCommit(false);
+            // con.setAutoCommit(false);
             System.out.println("Database Connected!");
             stmt = con.createStatement();
             String ur1;
             stmt.execute("select * from url");
             rs = stmt.getResultSet();
             while (rs.next()) {
-                ur1 = rs.getString("url");
-                Document document = Jsoup.connect(ur1).timeout(40000).userAgent("Mozilla").get();
-                Elements titl = document.getElementsByTag("a");
-                Elements links = document.select("a[href]");
-                //System.out.println(links);
-                for (Element link : links) {
-//                    try
-//                    {
-//                        URL url = new URL(link.attr("abs:href"));
-//                        HttpURLConnection httpURLConnect=(HttpURLConnection)url.openConnection();
-//                        httpURLConnect.setConnectTimeout(3000);
-//                        httpURLConnect.connect();
-//                        if(httpURLConnect.getResponseCode()==200 || httpURLConnect.getResponseCode()==200)
-//                        {
-//                            System.out.println(url+" - "+httpURLConnect.getResponseMessage());
-//                        }
-//                        if(httpURLConnect.getResponseCode()==HttpURLConnection.HTTP_NOT_FOUND)
-//                        {
-//                            System.out.println(url+" - "+httpURLConnect.getResponseMessage() + " - "+ HttpURLConnection.HTTP_NOT_FOUND);
-//                        }else{
-//                            System.out.println(url+" - "+httpURLConnect.getResponseMessage() + " - "+ HttpURLConnection.HTTP_NOT_FOUND);
-//                        }
-//                        if(httpURLConnect.getResponseCode()==405)
-//                        {
-//                            System.out.println("wmk");
-//                            System.out.println(url+" - "+httpURLConnect.getResponseMessage() + " - "+ HttpURLConnection.HTTP_NOT_FOUND);
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-                    try {
-                        URL url1 = new URL(link.attr("abs:href"));
-                        HttpURLConnection connection = (HttpURLConnection)url1.openConnection();
-                        connection.setConnectTimeout(300000);
-                        connection.setRequestMethod("GET");
-                        connection.connect();
-
-                        int code = connection.getResponseCode();
-                        if(code == 200 || code ==201 | code ==302) {
-                            System.out.println(code + " wmk");
-                            System.out.println(url1);
-                            uniqueURL.add(url1.toString());
-                        }
-                    } catch (Exception e) {
-                        if (e instanceof HttpStatusException) {
-                            System.out.println(("Unable to fetch url - "));
-
-                            throw e;
-                        } else {
-                            System.out.println(("Unable to fetch url - "));
-                        }
-                    }
+                try {
+                    ur1 = rs.getString("url");
+//                    String u = "replace into pool (url) values ('"+ur1+"')";
 //                    stmt = con.createStatement();
-//                    String query = "insert into crawler1 (name) values (?)";
-//                    PreparedStatement pstmt = con.prepareStatement(query);
-//                    pstmt.setString(1, link.attr("abs:href"));
-//                    int x = pstmt.executeUpdate();
-
+//                    stmt.execute(u);
+                    Document document = Jsoup.connect(ur1).userAgent("Mozilla").get();
+                    Elements titl = document.getElementsByTag("a");
+                    Elements links = document.select("a[href]");
+                    for (Element link : links) {
+                        System.out.println(link.attr("abs:href"));
+                        String query = "replace into crawler (name) values(?)";
+                        PreparedStatement pstmt = con.prepareStatement(query);
+                        pstmt.setString(1, link.attr("abs:href"));
+                        pstmt.executeUpdate();
+//                        try {
+//                            URL url1 = new URL(link.attr("abs:href"));
+//                        } catch (Exception e) {
+//                            System.out.println(e.getMessage());
+//                        }
+                    }
+                } catch (HttpStatusException e) {
+                    System.out.println(e.getMessage() + " url exception");
                 }
-                //System.out.println(uniqueURL.size() + " size");
+            }
+            //System.out.println("set =>" + uniqueURL);
+            //System.out.println(uniqueURL.size());
+            //Iterator it = uniqueURL.iterator();
+            while (it.hasNext()) {
+                String url = (String) it.next();
+//                stmt = con.createStatement();
+//                boolean x = stmt.execute("select exists(select name from crawler where name = '"+url+"')");
+//                System.out.println(x);
+                //String query = "INSERT INTO crawler (name) values(?) on duplicate key update name = ?";
+                String query = "replace into crawler (name) values(?)";
+
+                //String query = "insert into crawler (name) values(?)";
+                            //String query = "insert into crawler (name) values (?) where not exist (select url from url where url = '"+url+"')";
+                PreparedStatement pstmt = con.prepareStatement(query);
+                    pstmt.setString(1, url);
+                    //pstmt.setString(2, url);
+                    pstmt.executeUpdate();
+
+
+
             }
 
-            //con.commit();
-            System.out.println("set =>"+uniqueURL);
-            System.out.println(uniqueURL.size() + " size");
-            Iterator it = uniqueURL.iterator();
-            while(it.hasNext()){
-                System.out.println(it.next() + " 1111");}
-
         } catch (Exception e) {
-            e.printStackTrace();
+
+            System.out.println(e.getMessage());
         }
     }
 }

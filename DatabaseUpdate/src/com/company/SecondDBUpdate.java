@@ -10,11 +10,11 @@ public class SecondDBUpdate {
     public SecondDBUpdate() {
         Connection con = null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/submitter?useSSL=false", "root", "puneet");
-            System.out.println("wmk");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/submitter?useSSL=false", "root", "");
+            System.out.println("From Second Update");
             int count = 0;
             Statement stmt = con.createStatement();
-            stmt.execute("select * from crawler1");
+            stmt.execute("select * from crawler");
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
                 String ur1 = rs.getString("name");
@@ -36,7 +36,7 @@ public class SecondDBUpdate {
                 } catch (UnknownHostException e) {
                     if (e instanceof UnknownHostException) {
                         stmt = con.createStatement();
-                        String query = "delete from crawler1 where name = ?";
+                        String query = "delete from crawler where name = ?";
                         PreparedStatement pstmt = con.prepareStatement(query);
                         pstmt.setString(1, ur1);
                         pstmt.executeUpdate();
@@ -59,7 +59,7 @@ public class SecondDBUpdate {
                 }
             }
             stmt.execute("delete from url");
-            stmt.execute("delete from crawler1");
+            stmt.execute("delete from crawler");
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
