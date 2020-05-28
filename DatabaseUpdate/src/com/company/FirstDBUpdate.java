@@ -26,7 +26,6 @@ public class FirstDBUpdate {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        //Set<String> uniqueURL = new HashSet<>();
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/submitter?useSSL=false", "root", "");
             // con.setAutoCommit(false);
@@ -38,9 +37,6 @@ public class FirstDBUpdate {
             while (rs.next()) {
                 try {
                     ur1 = rs.getString("url");
-//                    String u = "replace into pool (url) values ('"+ur1+"')";
-//                    stmt = con.createStatement();
-//                    stmt.execute(u);
                     Document document = Jsoup.connect(ur1).userAgent("Mozilla").get();
                     Elements titl = document.getElementsByTag("a");
                     Elements links = document.select("a[href]");
@@ -50,37 +46,12 @@ public class FirstDBUpdate {
                         PreparedStatement pstmt = con.prepareStatement(query);
                         pstmt.setString(1, link.attr("abs:href"));
                         pstmt.executeUpdate();
-//                        try {
-//                            URL url1 = new URL(link.attr("abs:href"));
-//                        } catch (Exception e) {
-//                            System.out.println(e.getMessage());
-//                        }
                     }
-                } catch (HttpStatusException e) {
+                } catch (HttpStatusException | SQLException e) {
                     System.out.println(e.getMessage() + " url exception");
                 }
             }
-            //System.out.println("set =>" + uniqueURL);
-            //System.out.println(uniqueURL.size());
-            //Iterator it = uniqueURL.iterator();
-            while (it.hasNext()) {
-                String url = (String) it.next();
-//                stmt = con.createStatement();
-//                boolean x = stmt.execute("select exists(select name from crawler where name = '"+url+"')");
-//                System.out.println(x);
-                //String query = "INSERT INTO crawler (name) values(?) on duplicate key update name = ?";
-                String query = "replace into crawler (name) values(?)";
-
-                //String query = "insert into crawler (name) values(?)";
-                            //String query = "insert into crawler (name) values (?) where not exist (select url from url where url = '"+url+"')";
-                PreparedStatement pstmt = con.prepareStatement(query);
-                    pstmt.setString(1, url);
-                    //pstmt.setString(2, url);
-                    pstmt.executeUpdate();
-
-
-
-            }
+            new SecondDBUpdate();
 
         } catch (Exception e) {
 
