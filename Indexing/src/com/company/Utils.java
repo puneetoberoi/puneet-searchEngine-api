@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Utils {
@@ -17,17 +18,23 @@ public class Utils {
         //second attempt to remove duplicate words
         String[] words = toReduce.split(" ");
 
-        Map<String, Integer> map = new HashMap<>();
-        int i=0;
-        for(String w : words){
-            map.put(w,++i);
-        }
-        String out="";
-        for(Map.Entry m:map.entrySet()){
-            out=out+" "+m.getKey();
+        HashSet<String> unique = new HashSet<>();
+
+        for(String u: words){
+            unique.add(u);
         }
 
-        return out.trim();
+//        Map<String, Integer> map = new HashMap<>();
+//        int i=0;
+//        for(String w : words){
+//            map.put(w,++i);
+//        }
+//        String out="";
+//        for(Map.Entry m:map.entrySet()){
+//            out=out+" "+m.getKey();
+//        }
+
+        return unique.toString();
 
     }
 }

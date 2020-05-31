@@ -1,5 +1,7 @@
-package com.company;
+package com.company.test;
 
+import com.company.Index;
+import com.company.Utils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -11,13 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Grab url from the unique Database.
- * Grab the required content against each link to then store in MongoDB.
- */
+public class InputForIndexerTest {
 
-public class InputForIndexer {
-    public InputForIndexer() throws SQLException {
+    public InputForIndexerTest() throws SQLException {
         Connection con = null;
         Map<String, String> map = new HashMap<>();
         String concat="";
@@ -34,9 +32,13 @@ public class InputForIndexer {
                 try {
                     Document document = Jsoup.connect(ur1).timeout(40000).userAgent("Mozilla").get();
                     Elements link = document.select("a[href]");
+                    //System.out.println(link.text() + " links");
                     Elements titl = document.getElementsByTag("a");
+                    //System.out.println(titl.text() + " \ntitl");
                     Elements title = document.getElementsByTag("body");
+                    //System.out.println(title.text() + " \ntitle");
                     Elements para = document.select("title");
+                    //System.out.println(para.text() + " \npara");
 //                    String description=
 //                                document.select("meta[name=description]").get(0)
 //                                        .attr("content");
@@ -47,14 +49,21 @@ public class InputForIndexer {
 //                                    .attr("content");
                     Elements hTags = document.select("h1, h2, h3, h4, h5, h6");
                     Elements h1Tags = hTags.select("h1");
-                    System.out.println(h1Tags.text() + " wmk");
-                    String st = (para.text()+ " " + titl.text()+" "+link.tagName("title").text());
-                    String n = Utils.StringUtils(st);
+                    //System.out.println(h1Tags.text() + " wmk");
+                    String st = (para.text()+ " " + title.text());
+                    //System.out.println("before uniuqe:----  \n" + st);
+                    String n = UtilsTest.StringUtilsTest(st);
+                    //System.out.println(n + " unique string");
                     String[] arr = n.split(" ");
                     for(String nanak : arr){
                         System.out.println(ur1 + " = " + nanak);
+                        //System.out.println(nanak);
                         try{
-                            new Index(nanak, ur1);
+                            if(nanak.length()>=3){
+                                System.out.println(nanak);
+                                new IndexTest(nanak, ur1);
+                            }
+
                         }catch(Exception e){
                             if( e instanceof IndexOutOfBoundsException){
                                 System.out.println("wmk2");
@@ -121,9 +130,4 @@ public class InputForIndexer {
 
 
     }
-
-
 }
-
-
-

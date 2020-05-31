@@ -19,15 +19,17 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 //let response;
-const url = 'mongodb://localhost:27017/QueryProcessor';
-const connectionURL = 'mongodb://localhost:27017/';
-const databaseName = 'QueryProcessor';
+//const url = 'mongodb://localhost:27017/QueryProcessor';
+const atlastURL="mongodb+srv://puneet:02040204@nodeapi-etlso.mongodb.net/test?retryWrites=true&w=majority";
+//const connectionURL = 'mongodb://localhost:27017/';
+const databaseName = 'javamongo';
 var db
 var put
 var methods = [];
-MongoClient.connect('mongodb://localhost:27017/QueryProcessor', (err, database) => {
+MongoClient.connect('mongodb+srv://puneet:02040204@nodeapi-etlso.mongodb.net/test?retryWrites=true&w=majority', (err, database) => {
   if (err) return console.log(err)
-  db = database.db('QueryProcessor')
+  db = database.db(databaseName)
+  console.log("connected");
   app.listen(process.env.PORT || 3000, () => {
     console.log('listening on 3000')
   })
@@ -57,30 +59,37 @@ app.get('/', function (req, res, next) {
 })
 
 
-app.get('/test/:query', function (req, res, err) {
+app.get('/test/:query', function (req, res) {
+  urls=[]
   notes = []
   dataToSend = []
-  db.collection('new').find({ $text: { $search: req.params.query } },
+  db.collection('mongo').find({ $text: { $search: req.params.query } },
     { score: { $meta: "textScore" } })
     .sort({ score: { $meta: "textScore" } })
     .limit(6).toArray((error, data) => {
+      if(error) throw error;
+
       //console.log(data)
       //console.log("Here is data")
 
       notes.push(data)
-      //notes.forEach(element => console.log(element));
-      //let result = data.map(a => a.score)
-
-      let result = data.map(x => {
-        if (x.score>1) {
-          return x.url;
-        } else {
-          return [];
-        }
-      }).join(' ')
-
-      dataToSend = result.split(' ')
-      var one  = new Set((dataToSend))
+      
+      let result = data.map(a =>{ 
+        if(a.score>=0.5){
+          return a.url;
+        }else return []
+      })
+      var one = new Set()
+      result.forEach(element => one.add(element));
+      //console.log(one.size)
+      one.forEach(element=>urls.push(element))
+      //console.log(JSON.stringify(one) + " set")
+        //dataToSend = result.split(',')
+        //console.log(dataToSend + " this one")
+      //  var one  = new Set()
+      //  dataToSend.map(d => {
+      //     console.log(d)
+      //  })
       //    let result = data.map(function(note) {
       //     if(note.score>1){
       //       return note.score
@@ -92,26 +101,11 @@ app.get('/test/:query', function (req, res, err) {
       //     return note
       //   }
       // })
-
-  
-
-
-
-      //  dataToSend = notes.forEach((note) =>{
-      //    console.log(typeof(JSON.stringify(note)))
-      //    console.log(JSON.stringify(note.body))
-      //  })
-      console.log(data)
-      console.log((dataToSend))
-      console.log('***************************************')
-      console.log(result)
-      console.log('*****************************')
-      console.log(one)
       
       res.render('test', {
-        items: dataToSend,
+        items: urls,
         title: 'Jaspreet Singh',
-        desc: JSON.stringify(one)
+        //desc: JSON.stringify(data)
       })
 
       // res.render('test', {items:arr,
