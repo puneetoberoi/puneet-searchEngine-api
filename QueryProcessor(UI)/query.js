@@ -68,10 +68,6 @@ app.get('/test/:query', function (req, res) {
     .sort({ score: { $meta: "textScore" } })
     .limit(6).toArray((error, data) => {
       if(error) throw error;
-
-      //console.log(data)
-      //console.log("Here is data")
-
       notes.push(data)
       
       let result = data.map(a =>{ 
@@ -81,26 +77,7 @@ app.get('/test/:query', function (req, res) {
       })
       var one = new Set()
       result.forEach(element => one.add(element));
-      //console.log(one.size)
       one.forEach(element=>urls.push(element))
-      //console.log(JSON.stringify(one) + " set")
-        //dataToSend = result.split(',')
-        //console.log(dataToSend + " this one")
-      //  var one  = new Set()
-      //  dataToSend.map(d => {
-      //     console.log(d)
-      //  })
-      //    let result = data.map(function(note) {
-      //     if(note.score>1){
-      //       return note.score
-      //     }
-      // })
-
-      // let result = data.map((note) => {
-      //   if (note.score > 1) {
-      //     return note
-      //   }
-      // })
       
       res.render('test', {
         items: urls,
