@@ -8,10 +8,10 @@ import java.io.IOException;
 
 public class IndexTest {
 
-    public IndexTest(String key, String value) {
-        MongoClientURI server = new MongoClientURI("mongodb+srv://puneet:02040204@nodeapi-etlso.mongodb.net/test?retryWrites=true&w=majority");
-        MongoClient as = new MongoClient(server);
+    public IndexTest(String key, String value, String link) {
         try {
+            MongoClientURI server = new MongoClientURI("mongodb+srv://puneet:02040204@nodeapi-etlso.mongodb.net/test?retryWrites=true&w=majority");
+            MongoClient as = new MongoClient(server);
             DB database = as.getDB("javamongo");
             DBCollection collection = database.getCollection("mongo");
 //            MongoClientURI server = new MongoClientURI("mongodb://localhost:27017");
@@ -27,18 +27,24 @@ public class IndexTest {
             //DBCollection collection = db.getCollection("new");
             //DBCollection collection = (DBCollection) database.getCollection("new");
             //preparing the doc to insert
-            BasicDBObject doc1 = new BasicDBObject("body", key).append("url", value);
+            BasicDBObject document = new BasicDBObject();
+            document.put("body", key);
+            BasicDBObject document2 = new BasicDBObject();
+            document2.put("url", value);
+            document2.put("description", link);
+            document.put("details", document2);
+            //BasicDBObject doc1 = new BasicDBObject("body", key).append("url", value);
             //object to check if the key already exist, where we will just append.
             DBObject query = new BasicDBObject("body", key);
             //if no key yet insert else append
 
             if (collection.find(query).count() == 0) {
-                collection.insert(doc1);
+                collection.insert(document);
             } else {
                 try {
-                    DBCursor cursor = collection.find(doc1);
+                    DBCursor cursor = collection.find(document);
                     DBObject current = cursor.next();
-                    Object name = current.get("url");
+                    Object name = current.get("details.url");
 //                String updateName = (name != null ? name.toString() : "") + " " + key;
                     String updateName = (name.toString() + " " + value);
                     System.out.println(updateName);

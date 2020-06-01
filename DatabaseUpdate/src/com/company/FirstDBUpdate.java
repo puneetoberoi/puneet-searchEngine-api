@@ -28,7 +28,6 @@ public class FirstDBUpdate {
         ResultSet rs = null;
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/submitter?useSSL=false", "root", "");
-            // con.setAutoCommit(false);
             System.out.println("Database Connected!");
             stmt = con.createStatement();
             String ur1;

@@ -24,15 +24,15 @@ public class InputForIndexerTest {
             System.out.println("Database Connected!");
             int count = 0;
             Statement stmt = con.createStatement();
+            //Reading all the reachable and unique url.
             stmt.execute("select * from accepted");
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
                 String ur1 = rs.getString("url");
-                //System.out.println(ur1);
                 try {
                     Document document = Jsoup.connect(ur1).timeout(40000).userAgent("Mozilla").get();
                     Elements link = document.select("a[href]");
-                    //System.out.println(link.text() + " links");
+                    //System.out.println(link.text() + " \nlinks");
                     Elements titl = document.getElementsByTag("a");
                     //System.out.println(titl.text() + " \ntitl");
                     Elements title = document.getElementsByTag("body");
@@ -40,28 +40,30 @@ public class InputForIndexerTest {
                     Elements para = document.select("title");
                     //System.out.println(para.text() + " \npara");
 //                    String description=
-//                                document.select("meta[name=description]").get(0)
+//                                document.select("meta[name=description]")
 //                                        .attr("content");
 
 
-//                    String keywords =
-//                            document.select("meta[name=keywords]").first()
-//                                    .attr("content");
+                    String keywords =
+                            document.select("meta[name=keywords]").first()
+                                    .attr("content");
+                    //System.out.println(keywords + " \n keywords");
                     Elements hTags = document.select("h1, h2, h3, h4, h5, h6");
                     Elements h1Tags = hTags.select("h1");
+                    Elements h2Tags = hTags.select("h2");
                     //System.out.println(h1Tags.text() + " wmk");
-                    String st = (para.text()+ " " + title.text());
+                    //String st = (link.text()+ " " + title.text() + " " + keywords);
+                    String st = (keywords + " " + h1Tags.text() + " " + h2Tags.text());
                     //System.out.println("before uniuqe:----  \n" + st);
                     String n = UtilsTest.StringUtilsTest(st);
-                    //System.out.println(n + " unique string");
+                    //System.out.println(n + " \nunique string");
                     String[] arr = n.split(" ");
                     for(String nanak : arr){
                         System.out.println(ur1 + " = " + nanak);
-                        //System.out.println(nanak);
                         try{
                             if(nanak.length()>=3){
                                 System.out.println(nanak);
-                                new IndexTest(nanak, ur1);
+                                new IndexTest(nanak, ur1, link.text());
                             }
 
                         }catch(Exception e){
