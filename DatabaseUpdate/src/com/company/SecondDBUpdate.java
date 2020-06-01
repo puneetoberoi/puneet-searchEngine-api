@@ -36,37 +36,14 @@ public class SecondDBUpdate {
                     }
 
                 } catch (UnknownHostException e) {
-//                    if (e instanceof UnknownHostException) {
-//                        stmt = con.createStatement();
-//                        String query = "delete from crawler where name = ?";
-//                        PreparedStatement pstmt = con.prepareStatement(query);
-//                        pstmt.setString(1, ur1);
-//                        pstmt.executeUpdate();
-//                        System.out.println("The query didn't go through so deleted the record");
-//
-//
-//                    }
                     e.getStackTrace();
                 } catch (SQLException e) {
-//                    if (e instanceof SQLIntegrityConstraintViolationException) {
-//                        stmt = con.createStatement();
-//                        String query = "delete from url where url = ?";
-//                        PreparedStatement pstmt = con.prepareStatement(query);
-//                        pstmt.setString(1, ur1);
-//                        pstmt.executeUpdate();
-//                        System.out.println("The query didn't go through so deleted the record");
-//
-//
-//                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-//            stmt.execute("delete from url");
-//            stmt.execute("delete from crawler");
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
