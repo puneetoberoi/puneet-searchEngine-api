@@ -86,37 +86,12 @@ app.get('/test/:query', function (req, res) {
         console.log(element[0].details.description)
         urls.push(element[0])
       })
-      //notes.push(data)
-      
-      // let result = data.map(a =>{ 
-      //     body.push(a.details.description)
-      //     console.log(a.details.url + " details")
-      //     //console.log(a.details.description.substring(0,50) + ".......")
-      //     return a.details;
-      // })
-
-      // var one = new Set()
-      // one.add(result)
-      
-      // result.forEach(element => {
-      //   console.log(element.url + " before adding to set")
-      //   one.add(element)
-      // });
-      //console.log(one.size + " size")
-      // one.forEach(element=>{
-      //   console.log(element[0] + " this")
-      //   urls.push(element[0])
-      // })
-      // //console.log(urls.length + " size") 
       
       res.render('test', {
         items: urls,
         title: 'Jaspreet Singh',
         // desc: urls.description
       })
-
-      // res.render('test', {items:arr,
-      //                     title: 'Jaspreet Singh'})
     })
 
 })
@@ -124,10 +99,6 @@ app.get('/test/:query', function (req, res) {
 
 app.post('/test/', urlencodedParser, function (req, res, next) {
   var put = req.body.query;
-  //var s =(req.body.query)
-  //console.log(put)
-  //var s = put.split(" ")
-  //console.log(typeof(put))
   db.collection("query").insert({ body: put }, function (err, res) {
     if (err) throw err;
     //console.log("1 document inserted");
