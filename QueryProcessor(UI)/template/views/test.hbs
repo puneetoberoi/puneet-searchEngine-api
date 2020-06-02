@@ -6,10 +6,12 @@
     <style>
         body {
             padding-top: 50px;
+            padding-left: 20px;
+            padding-right: 20px ;
             margin: 0 auto;
             color: grey;
             font-family: sans-serif;
-            max-width: 1650px;
+            max-width: 1000px;
             
         }
 
@@ -42,8 +44,9 @@
     <div id="first">
         {{# each items }}
         
-        <a href="{{ this }}">{{ this }}</a>
+        <a href="{{ this.details.description }}">{{ this.details.url }}</a>
         <hr/>
+        <div>{{ this.details.description }}</div>
         {{!-- <div>{{ this.description }}</div> --}}
         <br>
         <br>

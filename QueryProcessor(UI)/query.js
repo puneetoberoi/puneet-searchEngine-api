@@ -62,27 +62,57 @@ app.get('/', function (req, res, next) {
 app.get('/test/:query', function (req, res) {
   urls=[]
   notes = []
-  dataToSend = []
+  body = []
   db.collection('mongo').find({ $text: { $search: req.params.query } },
     { score: { $meta: "textScore" } })
     .sort({ score: { $meta: "textScore" } })
     .limit(6).toArray((error, data) => {
       if(error) throw error;
-      notes.push(data)
+      console.log(data + " data")
+      console.log("type of data " + typeof(data))
+      // till here we are getting an object
+      var one = new Set();
+      one.add(data)
+      console.log(one.size + " set size")
+      console.log("type of " + typeof(one))
       
-      let result = data.map(a =>{ 
-        if(a.score>=0.5){
-          return a.url;
-        }else return []
+      let result = one.forEach(element =>{
+
+        var str = JSON.stringify(element[0].details.description)
+        var toConvert = str.substr(0,200) + "...........";
+        element[0].details.description = toConvert
+        console.log(JSON.stringify(element[0].details.description).substr(0,200) + "...........")
+        console.log("-----------")
+        console.log(element[0].details.description)
+        urls.push(element[0])
       })
-      var one = new Set()
-      result.forEach(element => one.add(element));
-      one.forEach(element=>urls.push(element))
+      //notes.push(data)
+      
+      // let result = data.map(a =>{ 
+      //     body.push(a.details.description)
+      //     console.log(a.details.url + " details")
+      //     //console.log(a.details.description.substring(0,50) + ".......")
+      //     return a.details;
+      // })
+
+      // var one = new Set()
+      // one.add(result)
+      
+      // result.forEach(element => {
+      //   console.log(element.url + " before adding to set")
+      //   one.add(element)
+      // });
+      //console.log(one.size + " size")
+      // one.forEach(element=>{
+      //   console.log(element[0] + " this")
+      //   urls.push(element[0])
+      // })
+      // //console.log(urls.length + " size") 
       
       res.render('test', {
         items: urls,
         title: 'Jaspreet Singh',
-        //desc: JSON.stringify(data)
+        // desc: urls.description
       })
 
       // res.render('test', {items:arr,
