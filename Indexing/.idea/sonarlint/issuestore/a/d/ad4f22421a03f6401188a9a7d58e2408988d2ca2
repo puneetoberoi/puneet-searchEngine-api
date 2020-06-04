@@ -1,0 +1,13 @@
+
+P
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+>
+java:S1148)"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+>
+java:S1148."#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+C
+java:S1874"-Remove this use of "getDB"; it is deprecated.(‹éÍ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Ï–Ôèøÿÿÿÿ
+S	java:S106&"9Replace this use of System.out or System.err by a logger.(Ï–Ôèøÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(ŞÆ†’
+Q	java:S125"<This block of commented-out lines of code should be removed.(¼‹ñ´

@@ -40,7 +40,7 @@ public class FirstDBUpdate {
                     Elements titl = document.getElementsByTag("a");
                     Elements links = document.select("a[href]");
                     for (Element link : links) {
-                        System.out.println(link.attr("abs:href"));
+                        //System.out.println(link.attr("abs:href"));
                         String query = "replace into crawler (name) values(?)";
                         PreparedStatement pstmt = con.prepareStatement(query);
                         pstmt.setString(1, link.attr("abs:href"));

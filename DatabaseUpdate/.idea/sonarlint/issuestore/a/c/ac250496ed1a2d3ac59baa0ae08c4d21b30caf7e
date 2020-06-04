@@ -1,0 +1,23 @@
+
+e
+java:S2095"HUse try-with-resources or close this "Connection" in a "finally" clause.(Ü³±Ù8âÆ†ğ§.
+d
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(œïì”8âÆ†ğ§.
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8·•Úï§.
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(å›çêûÿÿÿÿ8·•Úï§.
+i
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ªû½Üÿÿÿÿÿ8âÆ†ğ§.
+U	java:S106""9Replace this use of System.out or System.err by a logger.(‘Èá8·•Úï§.
+W
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8·•Úï§.
+E	java:S108(")Either remove or fill this block of code.(É®£8·•Úï§.
+E
+java:S1148,"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8·•Úï§.
+E
+java:S1148*"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8·•Úï§.
+N	java:S106"9Replace this use of System.out or System.err by a logger.(‰‘¸÷
+F
+java:S2115")Add password protection to this database.(Ü³±Ù8âÆ†ğ§.
+a
+java:S2147+"DCombine this catch with the one at line 41, which has the same body.(ï­£Ä8·•Úï§.

@@ -1,0 +1,12 @@
+
+c
+java:S5361%"HReplace this call to "replaceAll()" by a call to the "replace()" method.(“†Õœÿÿÿÿÿ
+M
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ
+>
+java:S1643."Use a StringBuilder instead.(ÒûïÇşÿÿÿÿ8¾èŒÆ§.
+]	java:S125"<This block of commented-out lines of code should be removed.(€›–úÿÿÿÿ8åØ‡Æ§.
+F
+java:S1905-")Remove this unnecessary cast to "String".(‹—µï8¾èŒÆ§.
+Q
+java:S1128"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8³èÆ§.

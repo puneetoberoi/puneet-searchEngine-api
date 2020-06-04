@@ -1,0 +1,34 @@
+
+X	java:S125+"<This block of commented-out lines of code should be removed.(ç…Ã‚8†è…ğ§.
+Z	java:S1062"9Replace this use of System.out or System.err by a logger.(¹õª‚üÿÿÿÿ8ºêğ§.
+T
+java:S1128	"7Remove this unused import 'java.net.HttpURLConnection'.(¬¬˜­8¾Œ…ğ§.
+J
+java:S1128".Remove this unused import 'java.util.HashSet'.(Ê‚êX8¾Œ…ğ§.
+L
+java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ8¾Œ…ğ§.
+e
+java:S2095"HUse try-with-resources or close this "Connection" in a "finally" clause.(Ü³±Ù8¾Œ…ğ§.
+L
+java:S1128"*Remove this unused import 'java.util.Set'.(ö²„¤şÿÿÿÿ8¾Œ…ğ§.
+F
+java:S2115")Add password protection to this database.(Ü³±Ù8¾Œ…ğ§.
+Z	java:S1069"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8…•»ï§.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(äÜÆœùÿÿÿÿ8¾Œ…ğ§.
+W
+java:S1141%"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ºêğ§.
+K
+java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8¾Œ…ğ§.
+d
+java:S2095 "GUse try-with-resources or close this "Statement" in a "finally" clause.(œïì”8¾Œ…ğ§.
+q
+java:S2095-"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(å›çêûÿÿÿÿ8ºêğ§.
+\
+java:S1128":Remove this unused import 'java.net.UnknownHostException'.(Ú·¬˜úÿÿÿÿ8¾Œ…ğ§.
+X
+java:S1128
+";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8¾Œ…ğ§.
+d
+java:S2095#"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(°æòù8¾Œ…ğ§.
+F
+java:S1481(")Remove this unused "titl" local variable.(Òò¬¨8ºêğ§.
