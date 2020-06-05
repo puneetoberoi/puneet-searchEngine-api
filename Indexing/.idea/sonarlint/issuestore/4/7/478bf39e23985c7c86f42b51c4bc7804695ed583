@@ -1,0 +1,31 @@
+
+V	java:S125 "<This block of commented-out lines of code should be removed.(Ê¸Ç‹ýÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ŽµÚåüÿÿÿÿ
+E
+java:S1481"*Remove this unused "title" local variable.(ŽýÝáøÿÿÿÿ
+V	java:S125""<This block of commented-out lines of code should be removed.(ÔÅÄ”þÿÿÿÿ
+?
+java:S1481")Remove this unused "titl" local variable.(Òò¬¨
+P
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(œÌåýÿÿÿÿ
+?
+java:S2115")Add password protection to this database.(œž¶À
+b
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ªû½Üÿÿÿÿÿ
+P
+java:S1141+"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+^
+java:S2095"HUse try-with-resources or close this "Connection" in a "finally" clause.(œž¶À
+V	java:S125*"<This block of commented-out lines of code should be removed.(¨ˆîµûÿÿÿÿ
+>
+java:S11481"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S1148:"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+V	java:S125%"<This block of commented-out lines of code should be removed.(ù”ÌÉÿÿÿÿÿ
+>
+java:S11486"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+V	java:S125'"<This block of commented-out lines of code should be removed.(ŒƒÇêûÿÿÿÿ
+D
+java:S1481")Remove this unused "body" local variable.(€ŸËÙûÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¸¨€úÿÿÿÿ

@@ -1,9 +1,11 @@
 
 I
 src/com/company/Main.java,4\a\4a831b10439099d44774d0ccc387e808deffaeab
-]
--src/com/company/test/InputForIndexerTest.java,0\e\0e85ce4adbac04a2ffa70e3a760210f749c53772
-S
-#src/com/company/test/UtilsTest.java,3\4\345c9f77494fbe5ce43f5e617bd6ea80facb85f9
-S
-#src/com/company/test/IndexTest.java,a\d\ad4f22421a03f6401188a9a7d58e2408988d2ca2
+V
+&src/com/company/changes/UtilsTest.java,d\b\dbf31271dee11d0ddc891069f9cb640827883e94
+`
+0src/com/company/changes/InputForIndexerTest.java,4\7\478bf39e23985c7c86f42b51c4bc7804695ed583
+a
+1src/com/company/Test/InputForIndexerTestTest.java,a\c\acdfa037bd632608a281abe227926ec5f559f933
+V
+&src/com/company/changes/IndexTest.java,3\2\32bd1228b95f61a1b4ab2d84b64ccfc1743b0304

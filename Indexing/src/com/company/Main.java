@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.test.InputForIndexerTest;
+import com.company.changes.InputForIndexerTest;
 
 import java.sql.*;
 

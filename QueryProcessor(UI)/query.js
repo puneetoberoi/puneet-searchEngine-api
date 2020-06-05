@@ -63,28 +63,45 @@ app.get('/test/:query', function (req, res) {
   urls=[]
   notes = []
   body = []
+  first = []
   db.collection('mongo').find({ $text: { $search: req.params.query } },
     { score: { $meta: "textScore" } })
     .sort({ score: { $meta: "textScore" } })
     .limit(6).toArray((error, data) => {
       if(error) throw error;
-      console.log(data + " data")
-      console.log("type of data " + typeof(data))
-      // till here we are getting an object
+      //console.log(data)
       var one = new Set();
-      one.add(data)
+      var two = new Set();
+      data.map(element =>{
+        var res = (element.url).split(" ")
+        //console.log((element.url).split(" "))
+        //notes = JSON.stringify(element.details.url).split()
+        //console.log(notes)
+        res.forEach(a=>{
+          console.log(a)
+          one.add(a)
+          // two = new Set(a)
+           //notes.push(a)
+        })
+        
+      })
+
+      one.forEach(element=>{
+        //two.add(element)
+        //console.log(element + " url")
+      })
+      
       console.log(one.size + " set size")
-      console.log("type of " + typeof(one))
       
       let result = one.forEach(element =>{
-
-        var str = JSON.stringify(element[0].details.description)
-        var toConvert = str.substr(0,200) + "...........";
-        element[0].details.description = toConvert
-        console.log(JSON.stringify(element[0].details.description).substr(0,200) + "...........")
-        console.log("-----------")
-        console.log(element[0].details.description)
-        urls.push(element[0])
+        console.log(element + " final url")
+        // var str = JSON.stringify(element[0].details.description)
+        // var toConvert = str.substr(0,200) + "...........";
+        // element[0].details.description = toConvert
+        // //console.log(JSON.stringify(element[0].details.description).substr(0,200) + "...........")
+        // //console.log("-----------")
+        // //console.log(element[0].details.description)
+         urls.push(element)
       })
       
       res.render('test', {

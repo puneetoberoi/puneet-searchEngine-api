@@ -19,7 +19,7 @@ public class SecondDBUpdate {
             stmt.execute("select * from crawler");
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
-                String ur1 = rs.getString("name");
+                String ur1 = rs.getString("url");
 
                 try {
                     URL url = new URL(ur1);

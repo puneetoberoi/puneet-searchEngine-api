@@ -1,4 +1,4 @@
-package com.company.test;
+package com.company.changes;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,6 +18,9 @@ public class InputForIndexerTest {
                 System.out.println(ur1);
                 try {
                     Document document = Jsoup.connect(ur1).timeout(40000).userAgent("Mozilla").get();
+                    String body = document.title().intern();
+                    System.out.println(document.select("keywords").text() + " way");
+                    //System.out.println(body + " body\n");
                     Elements link = document.select("a[href]");
                     Elements titl = document.getElementsByTag("a");
                     Elements title = document.getElementsByTag("body");
@@ -26,18 +29,15 @@ public class InputForIndexerTest {
                                     .attr("content");
                     Elements hTags = document.select("h1, h2, h3, h4, h5, h6");
                     Elements h1Tags = hTags.select("h1");
+                    //System.out.println(h1Tags.text() + " \n");
                     Elements h2Tags = hTags.select("h2");
-                    //System.out.println(h1Tags.text() + " wmk");
                     String st = (keywords + " " + h1Tags.text() + " " + h2Tags.text());
-                    System.out.println("before uniuqe:----  \n" + st);
                     String n = UtilsTest.removeDuplicates(st);
-                    System.out.println(n + " \nunique string");
                     String[] arr = n.split(" ");
                     for(String nanak : arr){
-                        System.out.println(ur1 + " = " + nanak);
                         try{
                             if(nanak.length()>=3){
-                                new IndexTest(nanak, ur1, link.text());
+                                new IndexTest(nanak, ur1);
                             }
 
                         }catch(IndexOutOfBoundsException e){

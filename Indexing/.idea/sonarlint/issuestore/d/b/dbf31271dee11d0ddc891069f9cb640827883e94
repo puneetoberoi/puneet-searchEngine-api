@@ -1,0 +1,8 @@
+
+?
+java:S1905+")Remove this unnecessary cast to "String".(‹—µï
+V	java:S125"<This block of commented-out lines of code should be removed.(€›–úÿÿÿÿ
+c
+java:S5361#"HReplace this call to "replaceAll()" by a call to the "replace()" method.(“†Õœÿÿÿÿÿ
+7
+java:S1643,"Use a StringBuilder instead.(ÒûïÇþÿÿÿÿ
