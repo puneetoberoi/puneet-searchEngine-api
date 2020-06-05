@@ -6,14 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.UnknownHostException;
 import java.sql.*;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * This will pick single links from DB1 and find sub links and add to the second DB picked up by SecondDBUpdate class
@@ -31,25 +24,23 @@ public class FirstDBUpdate {
                 try {
                     ur1 = rs.getString("url");
                     Document document = Jsoup.connect(ur1).userAgent("Mozilla").get();
-                    Elements titl = document.getElementsByTag("a");
                     Elements links = document.select("a[href]");
                     for (Element link : links) {
                         //for each of the test link provided by the submitter we will extract the a links present on the page by parsing with jsoup
-                        System.out.println(link.attr("abs:href"));
+                        //System.out.println(link.attr("abs:href"));
                         String query = "replace into crawler (url) values(?)";
                         PreparedStatement pstmt = con.prepareStatement(query);
                         pstmt.setString(1, link.attr("abs:href"));
                         pstmt.executeUpdate();
                     }
                 } catch (HttpStatusException | SQLException e) {
-                    System.out.println(e.getMessage() + " url exception");
+                   e.printStackTrace();
                 }
             }
-            //new SecondDBUpdate();
+            new SecondDBUpdate();
 
         } catch (Exception e) {
-
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }
