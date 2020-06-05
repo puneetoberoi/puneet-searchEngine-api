@@ -23,16 +23,10 @@ import java.util.Set;
 public class FirstDBUpdate {
 
     public FirstDBUpdate() {
-        Connection con = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/submitter?useSSL=false", "root", "");
-            System.out.println("Database Connected!");
-            stmt = con.createStatement();
+        try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/submitter?useSSL=false", "root", "");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from url");) {
             String ur1;
-            stmt.execute("select * from url");
-            rs = stmt.getResultSet();
             while (rs.next()) {
                 try {
                     ur1 = rs.getString("url");
@@ -40,7 +34,8 @@ public class FirstDBUpdate {
                     Elements titl = document.getElementsByTag("a");
                     Elements links = document.select("a[href]");
                     for (Element link : links) {
-                        //System.out.println(link.attr("abs:href"));
+                        //for each of the test link provided by the submitter we will extract the a links present on the page by parsing with jsoup
+                        System.out.println(link.attr("abs:href"));
                         String query = "replace into crawler (url) values(?)";
                         PreparedStatement pstmt = con.prepareStatement(query);
                         pstmt.setString(1, link.attr("abs:href"));
@@ -50,7 +45,7 @@ public class FirstDBUpdate {
                     System.out.println(e.getMessage() + " url exception");
                 }
             }
-            new SecondDBUpdate();
+            //new SecondDBUpdate();
 
         } catch (Exception e) {
 
